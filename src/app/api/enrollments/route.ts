@@ -1,5 +1,5 @@
 import { checkToken } from "@lib/checkToken";
-import { Database, Payload } from "@lib/types";
+import { Payload } from "@lib/types";
 import { NextRequest, NextResponse } from "next/server";
 import { getPrisma } from "@lib/getPrisma";
 
@@ -165,6 +165,14 @@ export const DELETE = async (request: NextRequest) => {
 
   const prisma = getPrisma();
   // Perform data delete
+  await prisma.enrollment.delete({
+    where: {
+    courseNo_studentId: {
+      courseNo: courseNo,
+      studentId: studentId,
+      },
+    }
+  });
 
   return NextResponse.json({
     ok: true,
