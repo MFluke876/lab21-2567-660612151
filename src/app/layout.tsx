@@ -39,7 +39,11 @@ export default function RootLayout({
         });
         $authenStore.set({ token, authenUsername });
       } catch (err) {
-        console.log(err.message);
+        if (err instanceof Error) {
+          console.log(err.message); 
+        } else {
+          console.log("An unknown error occurred");
+        }
         isTokenValid = false;
       }
     }
@@ -80,8 +84,8 @@ export default function RootLayout({
               </Title>
               {children}
               <Footer
-                studentId="660610999"
-                fullName="Dome Potikanond"
+                studentId="660612151"
+                fullName="Patchanop Rodklueng"
                 year="2024"
               />
             </Container>
